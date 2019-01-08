@@ -1,0 +1,102 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler2" aria-controls="navbarToggler1"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarToggler2">
+    <ul class="navbar-nav mr-auto">
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategories" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownCategories">
+          <form (ngSubmit)="applyCategory(1)">
+            <button class="btn btn-outline-success my-2 my-sm-0 btn-category">Smartphones</button>
+          </form>
+          &nbsp;
+          <form (ngSubmit)="applyCategory(2)">
+            <button class="btn btn-outline-success my-2 my-sm-0 btn-category">Laptops</button>
+          </form>
+          &nbsp;
+          <form (ngSubmit)="applyCategory(3)">
+            <button class="btn btn-outline-success my-2 my-sm-0 btn-category">Consoles</button>
+          </form>
+          &nbsp;
+          <form (ngSubmit)="applyCategory(4)">
+            <button class="btn btn-outline-success my-2 my-sm-0 btn-category">Video Games</button>
+          </form>
+          &nbsp;
+          <form (ngSubmit)="applyCategory(5)">
+            <button class="btn btn-outline-success my-2 my-sm-0 btn-category">TVs</button>
+          </form>
+          &nbsp;
+          <form (ngSubmit)="applyCategory(6)">
+            <button class="btn btn-outline-success my-2 my-sm-0 btn-category">Speakers</button>
+          </form>
+        </div>
+      </li>
+      &nbsp;&nbsp;&nbsp;
+      <li class="nav-item active">
+        <form #searchForm="ngForm" (ngSubmit)='applyKeyword()' class="form-inline my-2 my-lg-0">
+          <input name="search" #searchForm="ngModel" [(ngModel)]="keywordModel"  class="form-control mr-sm-2" type="search" placeholder="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          
+        </form>
+      </li>
+      &nbsp;&nbsp;&nbsp;
+      <li class="nav-item active">
+        <form class="form-inline" #priceRangeForm="ngForm" (ngSubmit)='applyRange()'>
+          <input type="number" name="minPrice" #minPrice="ngModel" [(ngModel)]="priceRangeModel.min" class="form-control mr-sm-2"
+            min="1" max="999999" placeholder="Minimum price">
+          <input type="number" name="maxPrice" #maxPrice="ngModel" [(ngModel)]="priceRangeModel.max" class="form-control mr-sm-2"
+            min="1" max="999999" placeholder="Maximum price">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+            [disabled]="priceRangeForm.form.invalid || priceRangeModel.min < 0 || priceRangeModel.min > priceRangeModel.max">
+            Set range
+          </button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="">
+    <li *ngFor="let product of products$">
+      <div class="prod-info-main prod-wrap clearfix">
+        <div class="row">
+          <div class="col-md-5 col-sm-12 col-xs-12">
+            <div class="product-image">
+              <img [src]=sanitizeUrl(product.image) class="img-responsive">
+            </div>
+          </div>
+          <div class="col-md-7 col-sm-12 col-xs-12">
+            <div class="product-deatil">
+              <h5 class="name">
+                {{product.name}}
+              </h5>
+              <p class="price-container">
+                <span>€{{product.price}}</span>
+              </p>
+              <span class="tag1"></span>
+            </div>
+            <div class="description">
+              <p>{{product.description}}</p>
+            </div>
+            <div class="product-info smart-form">
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="#" class="btn btn-danger">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>

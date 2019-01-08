@@ -1,0 +1,24 @@
+<div class="signup-form">
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <h2>Log in</h2>
+    <div class="form-group">
+      <input type="text" #username="ngModel" [(ngModel)]="customerModel.username"
+        [class.is-invalid]="username.invalid && username.touched" class="form-control" 
+        name="username" placeholder="Username" required="required" >
+    </div>
+    <div class="form-group">
+      <input type="password" #password="ngModel" [(ngModel)]="customerModel.password"
+      [class.is-invalid]="password.invalid && password.touched" class="form-control" 
+      name="password" placeholder="Password" required="required">
+    </div>
+    <div class="form-group">
+      <button [disabled]="loginForm.form.invalid" type="submit" class="btn btn-success btn-lg btn-block">Log in</button>
+    </div>
+
+    <div *ngIf="!this.checkLoginStatus()">
+      <small id="queryValidation" hidden>Invalid username or password.</small>
+    </div>
+
+    <a href="registration"><p class="hint-text">Need an account? Register here!</p></a>
+  </form>
+</div>
