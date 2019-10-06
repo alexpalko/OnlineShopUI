@@ -1,6 +1,8 @@
 # OnlineShop
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+This application represents the UI for a mock online electronics shop. 
+You can access the website here: https://onlineshop-304e5.web.app
 
 ## Development server
 
